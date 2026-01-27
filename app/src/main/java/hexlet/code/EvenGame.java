@@ -5,12 +5,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class EvenGame {
-
     /**
      * Четное или нет игра.
      */
-    private static int score = 0;
-
     public static void evenOrNot() {
         int finalScore = 3;
         int score = 0;
@@ -41,5 +38,7 @@ public class EvenGame {
     }
     private static boolean isEven(int number) {
         return number % 2 == 0;
+    }
+    private EvenGame() {
     }
 }
