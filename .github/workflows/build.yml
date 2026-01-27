@@ -48,5 +48,9 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           projectBaseDir: app
+          args: >
+            -Dsonar.projectKey=vasta1921_java-project-61
+            -Dsonar.organization=vasta1921
+            -Dsonar.host.url=https://sonarcloud.io
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
