@@ -13,4 +13,6 @@ public class Cli {
         String name = scan.next();
         System.out.printf("Welcome, %s!", name);
     }
+    private Cli() {
+    }
 }
