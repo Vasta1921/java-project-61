@@ -1,8 +1,32 @@
 package hexlet.code;
 
+import java.util.Scanner;
+
 public class App {
+    /**
+     * Метод запускающий скрипт
+     */
     public static void main(String[] args) {
-        System.out.println("Welcome to the Brain Games!");
-        Cli.welcome();
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Please enter the game number and press Enter.");
+        System.out.println("""
+                1 - Greet\s
+                2 - Even\s
+                0 - Exit""");
+        int choice = scan.nextInt();
+        System.out.println("Your choice: " + choice);
+        switch (choice) {
+            case 0:
+                System.exit(0);
+                break;
+            case 1:
+                Cli.welcome();
+                break;
+            case 2:
+                EvenGame.evenOrNot();
+                break;
+            default:
+                System.out.println("Unknown option");
+        }
     }
 }
