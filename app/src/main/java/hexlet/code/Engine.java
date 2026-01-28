@@ -92,5 +92,17 @@ public class Engine {
             System.out.println("Correct!");
         }
     }
+
+    public static int[] getArrayProgression() {
+        int firstNumber = ThreadLocalRandom.current().nextInt(1, 100);
+        int step = ThreadLocalRandom.current().nextInt(2, 10);
+        int lengthArray = ThreadLocalRandom.current().nextInt(5, 11);
+        int[] progression = new int[lengthArray];
+        progression[0] = firstNumber;
+        for (int i = 1; i < lengthArray; i++) {
+            progression[i] = progression[i - 1] + step;
+        }
+        return progression;
+    }
 }
 
