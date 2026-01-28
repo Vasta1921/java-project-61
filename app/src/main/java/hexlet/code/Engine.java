@@ -82,6 +82,7 @@ public class Engine {
 
     /**
      * Увелечение очков.
+     *
      * @param score         очки пользователя.
      * @param answer        ответ пользователя
      * @param correctAnswer верный ответ
@@ -93,6 +94,11 @@ public class Engine {
         }
     }
 
+    /**
+     * Прогрессия чисел.
+     *
+     * @return прогрессия.
+     */
     public static int[] getArrayProgression() {
         int firstNumber = ThreadLocalRandom.current().nextInt(1, 100);
         int step = ThreadLocalRandom.current().nextInt(2, 10);

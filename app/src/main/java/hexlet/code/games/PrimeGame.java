@@ -3,19 +3,20 @@ package hexlet.code.games;
 import hexlet.code.Cli;
 import hexlet.code.Engine;
 
-public class EvenGame {
+public class PrimeGame {
     /**
-     * Четное или нет игра.
+     * Игра простое число или нет.
      */
-    public static void evenOrNot() {
+    public static void primeGame() {
         int finalScore = 3;
         int score = 0;
         Cli.welcome();
-        proccesGame(score, finalScore);
+        processGame(score, finalScore);
     }
-    private static void proccesGame(int score, int finalScore) {
+
+    private static void processGame(int score, int finalScore) {
+        System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
         while (score < finalScore) {
-            System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
             int number = Engine.randomNumber();
             System.out.println("Question: " + number);
             String answer = Engine.userAnswer();
@@ -23,7 +24,7 @@ public class EvenGame {
                 System.out.println("Invalid answer.");
                 break;
             }
-            String correctAnswer = isEven(number) ? "yes" : "no";
+            String correctAnswer = isPrime(number) ? "yes" : "no";
             if (answer.equals(correctAnswer)) {
                 score++;
                 System.out.println("Correct!");
@@ -34,9 +35,21 @@ public class EvenGame {
         }
         Engine.win(score, finalScore);
     }
-    private static boolean isEven(int number) {
-        return number % 2 == 0;
+
+    private static boolean isPrime(int number) {
+        if (number <= 2 || (number % 2 == 1 && checkDivision(number))) {
+            return true;
+        }
+        return false;
     }
-    private EvenGame() {
+
+    private static boolean checkDivision(int number) {
+        int sqrt = (int) Math.sqrt(number);
+        for (int i = 3; i <= sqrt; i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
