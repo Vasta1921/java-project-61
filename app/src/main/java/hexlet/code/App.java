@@ -2,12 +2,13 @@ package hexlet.code;
 
 import hexlet.code.games.CalculatorGame;
 import hexlet.code.games.EvenGame;
+import hexlet.code.games.GcdGame;
 
 import java.util.Scanner;
 
 public class App {
     /**
-     * Метод запускающий скрипт
+     * Метод запускающий скрипт.
      */
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -16,6 +17,7 @@ public class App {
                 1 - Greet\s
                 2 - Even\s
                 3 - Calc\s
+                4 - Gcd\s
                 0 - Exit""");
         int choice = scan.nextInt();
         System.out.println("Your choice: " + choice);
@@ -32,8 +34,13 @@ public class App {
             case 3:
                 CalculatorGame.calcGame();
                 break;
+            case 4:
+                GcdGame.gcdGame();
+                break;
             default:
                 System.out.println("Unknown option");
         }
+    }
+    private App() {
     }
 }

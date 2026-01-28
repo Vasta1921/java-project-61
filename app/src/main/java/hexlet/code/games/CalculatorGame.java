@@ -14,12 +14,11 @@ public class CalculatorGame {
         Cli.welcome();
         processGame(score, finalScore, operator);
     }
-
     private static void processGame(int score, int finalScore, char[] operator) {
         while (score < finalScore) {
             System.out.println("What is the result of the expression?");
-            int number1 = Engine.randomNumber();
-            int number2 = Engine.randomNumber();
+            int number1 = Engine.randomNumberForCalc();
+            int number2 = Engine.randomNumberForCalc();
             char op = Engine.randomOperator(operator);
             int correctAnswer = switch (op) {
                 case '+' -> number1 + number2;
@@ -40,7 +39,6 @@ public class CalculatorGame {
         }
         Engine.win(score, finalScore);
     }
-
     private CalculatorGame() {
     }
 }
