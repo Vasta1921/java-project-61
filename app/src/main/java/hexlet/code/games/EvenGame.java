@@ -1,8 +1,7 @@
-package hexlet.code;
+package hexlet.code.games;
 
-import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
-
+import hexlet.code.Cli;
+import hexlet.code.Engine;
 
 public class EvenGame {
     /**
@@ -11,13 +10,15 @@ public class EvenGame {
     public static void evenOrNot() {
         int finalScore = 3;
         int score = 0;
-        Scanner scan = new Scanner(System.in);
         Cli.welcome();
+        proccesGame(score, finalScore);
+    }
+    private static void proccesGame(int score, int finalScore) {
         while (score < finalScore) {
             System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
-            int number = ThreadLocalRandom.current().nextInt(1, 100);
+            int number = Engine.randomNumber();
             System.out.println("Question: " + number);
-            String answer = scan.next();
+            String answer = Engine.userAnswer();
             if (!answer.equals("yes") && !answer.equals("no")) {
                 System.out.println("Invalid answer.");
                 break;
@@ -32,9 +33,7 @@ public class EvenGame {
                 break;
             }
         }
-        if (score == finalScore) {
-            System.out.println("Congratulations!");
-        }
+        Engine.win(score, finalScore);
     }
     private static boolean isEven(int number) {
         return number % 2 == 0;
