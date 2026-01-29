@@ -3,18 +3,22 @@ package hexlet.code.games;
 import hexlet.code.Cli;
 import hexlet.code.Engine;
 
+import static hexlet.code.Engine.Constants.FINAL_SCORE;
+
 public class EvenGame {
+
+    private EvenGame() {
+    }
     /**
      * Четное или нет игра.
      */
     public static void evenOrNot() {
-        int finalScore = 3;
-        int score = 0;
         Cli.welcome();
-        processGame(score, finalScore);
+        processGame();
     }
-    private static void processGame(int score, int finalScore) {
-        while (score < finalScore) {
+    private static void processGame() {
+        int score = 0;
+        while (score < FINAL_SCORE) {
             System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
             int number = Engine.randomNumber();
             System.out.println("Question: " + number);
@@ -36,7 +40,5 @@ public class EvenGame {
     }
     private static boolean isEven(int number) {
         return number % 2 == 0;
-    }
-    private EvenGame() {
     }
 }

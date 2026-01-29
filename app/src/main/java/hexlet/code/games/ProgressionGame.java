@@ -5,20 +5,23 @@ import hexlet.code.Engine;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import static hexlet.code.Engine.Constants.FINAL_SCORE;
+
 public class ProgressionGame {
+    private ProgressionGame() {
+    }
+
     /**
      * Игра прогрессия.
      */
     public static void progressionGame() {
-        int finalScore = 3;
-        int score = 0;
         Cli.welcome();
-        processGame(score, finalScore);
+        processGame();
     }
-
-    private static void processGame(int score, int finalScore) {
+    private static void processGame() {
+        int score = 0;
         System.out.println("What number is missing in the progression?");
-        while (score < finalScore) {
+        while (score < FINAL_SCORE) {
             var prog = Engine.getArrayProgression();
             int lostIndex = ThreadLocalRandom.current().nextInt(0, prog.length + 1);
             int correctAnswer = 0;

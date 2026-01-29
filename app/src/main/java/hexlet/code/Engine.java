@@ -31,8 +31,7 @@ public class Engine {
 
     /**
      * Поздравление с победой.
-     *
-     * @param score      счет игрока
+     * @param score счет игрока
      */
     public static void checkWin(int score) {
         if (score == FINAL_SCORE) {
@@ -70,6 +69,7 @@ public class Engine {
      * @return ответ
      */
     public static String userAnswer() {
+        Scanner scan = new Scanner(System.in);
         return scan.nextLine();
     }
 
@@ -118,8 +118,14 @@ public class Engine {
     }
 
     public static class Constants {
+        /**
+         * Константа финального счета.
+         */
         public static final int FINAL_SCORE = 3;
-        public static final char[] operator = {'+', '-', '*'};
+        /**
+         * Константа операторов.
+         */
+        public static final char[] OPERATOR = {'+', '-', '*'};
     }
 }
 

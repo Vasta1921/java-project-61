@@ -4,7 +4,7 @@ import hexlet.code.Cli;
 import hexlet.code.Engine;
 
 import static hexlet.code.Engine.Constants.FINAL_SCORE;
-import static hexlet.code.Engine.Constants.operator;
+import static hexlet.code.Engine.Constants.OPERATOR;
 
 public class CalculatorGame {
 
@@ -26,7 +26,7 @@ public class CalculatorGame {
             System.out.println("What is the result of the expression?");
             int number1 = Engine.randomNumberForCalc();
             int number2 = Engine.randomNumberForCalc();
-            char op = Engine.randomOperator(operator);
+            char op = Engine.randomOperator(OPERATOR);
             int correctAnswer = switch (op) {
                 case '+' -> number1 + number2;
                 case '-' -> number1 - number2;

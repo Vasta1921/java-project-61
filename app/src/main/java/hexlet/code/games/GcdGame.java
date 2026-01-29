@@ -3,19 +3,23 @@ package hexlet.code.games;
 import hexlet.code.Cli;
 import hexlet.code.Engine;
 
+import static hexlet.code.Engine.Constants.FINAL_SCORE;
+
 public class GcdGame {
+
+    private GcdGame() {
+    }
     /**
      * Игра НОД.
      */
     public static void gcdGame() {
-        int finalScore = 3;
-        int score = 0;
         Cli.welcome();
-        proccesGame(score, finalScore);
+        proccesGame();
     }
-    private static void proccesGame(int score, int finalScore) {
+    private static void proccesGame() {
+        int score = 0;
         System.out.println("Find the greatest common divisor of given numbers.");
-        while (score < finalScore) {
+        while (score < FINAL_SCORE) {
             int number1 = Engine.randomNumber();
             int number2 = Engine.randomNumber();
             int temp = number2;
@@ -38,7 +42,5 @@ public class GcdGame {
             }
         }
         Engine.checkWin(score);
-    }
-    private GcdGame() {
     }
 }

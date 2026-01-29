@@ -3,20 +3,24 @@ package hexlet.code.games;
 import hexlet.code.Cli;
 import hexlet.code.Engine;
 
+import static hexlet.code.Engine.Constants.FINAL_SCORE;
+
 public class PrimeGame {
+
+    private PrimeGame() {
+    }
     /**
      * Игра простое число или нет.
      */
     public static void primeGame() {
-        int finalScore = 3;
-        int score = 0;
         Cli.welcome();
-        processGame(score, finalScore);
+        processGame();
     }
 
-    private static void processGame(int score, int finalScore) {
+    private static void processGame() {
+        int score = 0;
         System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
-        while (score < finalScore) {
+        while (score < FINAL_SCORE) {
             int number = Engine.randomNumber();
             System.out.println("Question: " + number);
             String answer = Engine.userAnswer();
