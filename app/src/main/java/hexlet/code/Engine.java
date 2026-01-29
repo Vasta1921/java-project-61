@@ -1,14 +1,22 @@
 package hexlet.code;
 
-
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static hexlet.code.Engine.Constants.FINAL_SCORE;
+
 public class Engine {
+
     /**
      * Ввод команд пользователя.
      */
-    Scanner scan = new Scanner(System.in);
+    private static final Scanner scan = new Scanner(System.in);
+
+    public static void startGame() {
+        int finalScore = 3;
+        int score = 0;
+        Cli.welcome();
+    }
 
     /**
      * Валидация неправильного ответа.
@@ -25,10 +33,9 @@ public class Engine {
      * Поздравление с победой.
      *
      * @param score      счет игрока
-     * @param finalScore счет для победы игрока
      */
-    public static void win(int score, int finalScore) {
-        if (score == finalScore) {
+    public static void checkWin(int score) {
+        if (score == FINAL_SCORE) {
             System.out.println("Congratulations!");
         }
     }
@@ -63,7 +70,6 @@ public class Engine {
      * @return ответ
      */
     public static String userAnswer() {
-        Scanner scan = new Scanner(System.in);
         return scan.nextLine();
     }
 
@@ -109,6 +115,11 @@ public class Engine {
             progression[i] = progression[i - 1] + step;
         }
         return progression;
+    }
+
+    public static class Constants {
+        public static final int FINAL_SCORE = 3;
+        public static final char[] operator = {'+', '-', '*'};
     }
 }
 

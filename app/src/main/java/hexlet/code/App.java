@@ -32,7 +32,7 @@ public class App {
                 EvenGame.evenOrNot();
                 break;
             case 3:
-                CalculatorGame.calcGame();
+                CalculatorGame.playCalculatorGame();
                 break;
             case 4:
                 GcdGame.gcdGame();

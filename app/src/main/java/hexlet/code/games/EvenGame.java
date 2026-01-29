@@ -11,9 +11,9 @@ public class EvenGame {
         int finalScore = 3;
         int score = 0;
         Cli.welcome();
-        proccesGame(score, finalScore);
+        processGame(score, finalScore);
     }
-    private static void proccesGame(int score, int finalScore) {
+    private static void processGame(int score, int finalScore) {
         while (score < finalScore) {
             System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
             int number = Engine.randomNumber();
@@ -32,7 +32,7 @@ public class EvenGame {
                 break;
             }
         }
-        Engine.win(score, finalScore);
+        Engine.checkWin(score);
     }
     private static boolean isEven(int number) {
         return number % 2 == 0;

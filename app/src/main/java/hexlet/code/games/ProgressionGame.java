@@ -40,6 +40,6 @@ public class ProgressionGame {
                 break;
             }
         }
-        Engine.win(score, finalScore);
+        Engine.checkWin(score);
     }
 }

@@ -33,7 +33,7 @@ public class PrimeGame {
                 break;
             }
         }
-        Engine.win(score, finalScore);
+        Engine.checkWin(score);
     }
 
     private static boolean isPrime(int number) {

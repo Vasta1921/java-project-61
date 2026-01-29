@@ -37,7 +37,7 @@ public class GcdGame {
                 break;
             }
         }
-        Engine.win(score, finalScore);
+        Engine.checkWin(score);
     }
     private GcdGame() {
     }

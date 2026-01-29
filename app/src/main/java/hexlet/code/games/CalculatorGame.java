@@ -3,19 +3,26 @@ package hexlet.code.games;
 import hexlet.code.Cli;
 import hexlet.code.Engine;
 
+import static hexlet.code.Engine.Constants.FINAL_SCORE;
+import static hexlet.code.Engine.Constants.operator;
+
 public class CalculatorGame {
+
+    private CalculatorGame() {
+    }
+
     /**
      * Игра калькулятор.
      */
-    public static void calcGame() {
-        int score = 0;
-        int finalScore = 3;
-        char[] operator = {'+', '-', '*'};
+    public static void playCalculatorGame() {
         Cli.welcome();
-        processGame(score, finalScore, operator);
+        processGame();
     }
-    private static void processGame(int score, int finalScore, char[] operator) {
-        while (score < finalScore) {
+
+    private static void processGame() {
+        int score = 0;
+        while (score < FINAL_SCORE) {
+
             System.out.println("What is the result of the expression?");
             int number1 = Engine.randomNumberForCalc();
             int number2 = Engine.randomNumberForCalc();
@@ -26,19 +33,18 @@ public class CalculatorGame {
                 case '*' -> number1 * number2;
                 default -> 0;
             };
-            System.out.println("Question: " + number1 + " " + op + " " + number2);
+            System.out.printf("Question: %d %s %d \n", number1, op, number2);
             String answer = Engine.userAnswer();
             Engine.isValidNumber(answer);
             if (Integer.parseInt(answer) == correctAnswer) {
                 score++;
+
                 System.out.println("Correct!");
             } else {
                 Engine.unCorrect(answer, String.valueOf(correctAnswer));
                 break;
             }
         }
-        Engine.win(score, finalScore);
-    }
-    private CalculatorGame() {
+        Engine.checkWin(score);
     }
 }
