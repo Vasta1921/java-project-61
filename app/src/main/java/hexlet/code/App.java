@@ -4,14 +4,16 @@ import hexlet.code.games.*;
 
 import java.util.Scanner;
 
+import static hexlet.code.Engine.println;
+
 public class App {
     /**
      * Метод запускающий скрипт.
      */
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter the game number and press Enter.");
-        System.out.println("""
+        println("Please enter the game number and press Enter.");
+        println("""
                 1 - Greet\s
                 2 - Even\s
                 3 - Calc\s
@@ -20,7 +22,7 @@ public class App {
                 6 - Prime\s
                 0 - Exit""");
         int choice = scan.nextInt();
-        System.out.println("Your choice: " + choice);
+        println("Your choice: " + choice);
         switch (choice) {
             case 0:
                 System.exit(0);
@@ -44,7 +46,7 @@ public class App {
                 PrimeGame.primeGame();
                 break;
             default:
-                System.out.println("Unknown option");
+                println("Unknown option");
         }
     }
     private App() {

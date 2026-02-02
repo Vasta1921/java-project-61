@@ -1,9 +1,10 @@
 package hexlet.code.games;
 
 import hexlet.code.Cli;
-import hexlet.code.Engine;
 
-import static hexlet.code.Engine.Constants.FINAL_SCORE;
+import static hexlet.code.Engine.*;
+import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
+import static hexlet.code.Engine.TextConstants.*;
 
 public class EvenGame {
 
@@ -19,24 +20,24 @@ public class EvenGame {
     private static void processGame() {
         int score = 0;
         while (score < FINAL_SCORE) {
-            System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
-            int number = Engine.randomNumber();
-            System.out.println("Question: " + number);
-            String answer = Engine.userAnswer();
-            if (!answer.equals("yes") && !answer.equals("no")) {
-                System.out.println("Invalid answer.");
+            println(ANSWER_EVEN);
+            int number = randomNumber();
+            println(QUESTION + number);
+            String answer = userAnswer();
+            if (!answer.equalsIgnoreCase(YES) && !answer.equalsIgnoreCase(NO)) {
+                println(INVALID_ANSWER);
                 break;
             }
-            String correctAnswer = isEven(number) ? "yes" : "no";
+            String correctAnswer = isEven(number) ? YES : NO;
             if (answer.equals(correctAnswer)) {
                 score++;
-                System.out.println("Correct!");
+                println(CORRECT);
             } else {
-                Engine.unCorrect(answer, correctAnswer);
+                unCorrect(answer, correctAnswer);
                 break;
             }
         }
-        Engine.checkWin(score);
+        checkWin(score);
     }
     private static boolean isEven(int number) {
         return number % 2 == 0;

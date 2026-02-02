@@ -1,9 +1,10 @@
 package hexlet.code.games;
 
 import hexlet.code.Cli;
-import hexlet.code.Engine;
 
-import static hexlet.code.Engine.Constants.FINAL_SCORE;
+import static hexlet.code.Engine.*;
+import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
+import static hexlet.code.Engine.TextConstants.*;
 
 public class GcdGame {
 
@@ -14,33 +15,33 @@ public class GcdGame {
      */
     public static void gcdGame() {
         Cli.welcome();
-        proccesGame();
+        processGame();
     }
-    private static void proccesGame() {
+    private static void processGame() {
         int score = 0;
-        System.out.println("Find the greatest common divisor of given numbers.");
+        println(GREATEST_COMMON_DIVISOR);
         while (score < FINAL_SCORE) {
-            int number1 = Engine.randomNumber();
-            int number2 = Engine.randomNumber();
-            int temp = number2;
+            int firstNumber = randomNumber();
+            int secondNumber = randomNumber();
+            int temp = secondNumber;
             int correctAnswer = 0;
-            System.out.println("Question:" + number1 + " " + number2);
-            String answer = Engine.userAnswer();
-            Engine.isValidNumber(answer);
-            while (number2 != 0) {
-                number2 = number1 % number2;
-                number1 = temp;
-                temp = number2;
+            println(QUESTION + firstNumber + " " + secondNumber);
+            String answer = userAnswer();
+            isValidNumber(answer);
+            while (secondNumber != 0) {
+                secondNumber = firstNumber % secondNumber;
+                firstNumber = temp;
+                temp = secondNumber;
             }
-            correctAnswer = number1;
+            correctAnswer = firstNumber;
             if (answer.equals(String.valueOf(correctAnswer))) {
                 score++;
-                System.out.println("Correct!");
+                println(CORRECT);
             } else {
-                Engine.unCorrect(answer, String.valueOf(correctAnswer));
+                unCorrect(answer, String.valueOf(correctAnswer));
                 break;
             }
         }
-        Engine.checkWin(score);
+        checkWin(score);
     }
 }

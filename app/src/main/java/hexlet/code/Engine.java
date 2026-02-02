@@ -3,7 +3,7 @@ package hexlet.code;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static hexlet.code.Engine.Constants.FINAL_SCORE;
+import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
 
 public class Engine {
 
@@ -12,12 +12,6 @@ public class Engine {
      */
     private static final Scanner scan = new Scanner(System.in);
 
-    public static void startGame() {
-        int finalScore = 3;
-        int score = 0;
-        Cli.welcome();
-    }
-
     /**
      * Валидация неправильного ответа.
      *
@@ -25,7 +19,7 @@ public class Engine {
      * @param correctAnswer правильный ответ.
      */
     public static void unCorrect(String answer, String correctAnswer) {
-        System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was '" + correctAnswer
+        println("'" + answer + "' is wrong answer ;(. Correct answer was '" + correctAnswer
                 + "'.\nLet's try again");
     }
 
@@ -35,7 +29,7 @@ public class Engine {
      */
     public static void checkWin(int score) {
         if (score == FINAL_SCORE) {
-            System.out.println("Congratulations!");
+            println("Congratulations!");
         }
     }
 
@@ -69,7 +63,6 @@ public class Engine {
      * @return ответ
      */
     public static String userAnswer() {
-        Scanner scan = new Scanner(System.in);
         return scan.nextLine();
     }
 
@@ -82,21 +75,7 @@ public class Engine {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid number.");
-        }
-    }
-
-    /**
-     * Увелечение очков.
-     *
-     * @param score         очки пользователя.
-     * @param answer        ответ пользователя
-     * @param correctAnswer верный ответ
-     */
-    public static void increaseScore(int score, String answer, int correctAnswer) {
-        if (answer.equals(String.valueOf(correctAnswer))) {
-            score++;
-            System.out.println("Correct!");
+            println("Please enter a valid number.");
         }
     }
 
@@ -117,7 +96,15 @@ public class Engine {
         return progression;
     }
 
-    public static class Constants {
+    public static void println(String message) {
+        System.out.println(message);
+    }
+
+    public static void print(String message) {
+        System.out.print(message);
+    }
+
+    public static class GameConstants {
         /**
          * Константа финального счета.
          */
@@ -127,5 +114,21 @@ public class Engine {
          */
         public static final char[] OPERATOR = {'+', '-', '*'};
     }
+
+    public static class TextConstants {
+        public static final String RESULT_EXPRESSION = "What is the result of the expression?";
+        public static final String QUESTION_THREE_ARGUMENT = "Question: %d %s %d \n";
+        public static final String CORRECT = "Correct!";
+        public static final String ANSWER_EVEN = "Answer 'yes' if the number is even, otherwise answer 'no'.!";
+        public static final String YES = "yes";
+        public static final String NO = "no";
+        public static final String QUESTION = "Question: ";
+        public static final String INVALID_ANSWER = "Invalid answer.";
+        public static final String GREATEST_COMMON_DIVISOR = "Find the greatest common divisor of given numbers.";
+        public static final String ANSWER_PRIME = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+        public static final String NUMBER_MISSING = "What number is missing in the progression?";
+
+    }
+
 }
 

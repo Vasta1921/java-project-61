@@ -1,9 +1,10 @@
 package hexlet.code.games;
 
 import hexlet.code.Cli;
-import hexlet.code.Engine;
 
-import static hexlet.code.Engine.Constants.FINAL_SCORE;
+import static hexlet.code.Engine.*;
+import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
+import static hexlet.code.Engine.TextConstants.*;
 
 public class PrimeGame {
 
@@ -19,32 +20,29 @@ public class PrimeGame {
 
     private static void processGame() {
         int score = 0;
-        System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
+        println(ANSWER_PRIME);
         while (score < FINAL_SCORE) {
-            int number = Engine.randomNumber();
-            System.out.println("Question: " + number);
-            String answer = Engine.userAnswer();
-            if (!answer.equals("yes") && !answer.equals("no")) {
-                System.out.println("Invalid answer.");
+            int number = randomNumber();
+            println(QUESTION + number);
+            String answer = userAnswer();
+            if (!answer.equals(YES) && !answer.equals(NO)) {
+                println(INVALID_ANSWER);
                 break;
             }
-            String correctAnswer = isPrime(number) ? "yes" : "no";
+            String correctAnswer = isPrime(number) ? YES : NO;
             if (answer.equals(correctAnswer)) {
                 score++;
-                System.out.println("Correct!");
+                println(CORRECT);
             } else {
-                Engine.unCorrect(answer, correctAnswer);
+                unCorrect(answer, correctAnswer);
                 break;
             }
         }
-        Engine.checkWin(score);
+        checkWin(score);
     }
 
     private static boolean isPrime(int number) {
-        if (number <= 2 || (number % 2 == 1 && checkDivision(number))) {
-            return true;
-        }
-        return false;
+        return number <= 2 || (number % 2 == 1 && checkDivision(number));
     }
 
     private static boolean checkDivision(int number) {
