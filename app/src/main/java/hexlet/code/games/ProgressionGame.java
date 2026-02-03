@@ -24,12 +24,11 @@ public class ProgressionGame {
         println(NUMBER_MISSING);
         while (score < FINAL_SCORE) {
             var arrayProgression = getArrayProgression();
-            int lostIndex = ThreadLocalRandom.current().nextInt(0, arrayProgression.length + 1);
-            int correctAnswer = 0;
+            int lostIndex = ThreadLocalRandom.current().nextInt(arrayProgression.length);
+            int correctAnswer = arrayProgression[lostIndex];
             print(QUESTION);
             for (int i = 0; i < arrayProgression.length; i++) {
                 if (i == lostIndex) {
-                    correctAnswer = arrayProgression[i];
                     print(".. ");
                 } else {
                     print(arrayProgression[i] + " ");
