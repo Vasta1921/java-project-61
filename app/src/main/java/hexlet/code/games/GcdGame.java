@@ -2,6 +2,7 @@ package hexlet.code.games;
 
 import hexlet.code.Cli;
 
+
 import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
 import static hexlet.code.Engine.TextConstants.CORRECT;
 import static hexlet.code.Engine.TextConstants.GREATEST_COMMON_DIVISOR;
@@ -13,7 +14,9 @@ import static hexlet.code.Engine.randomNumber;
 import static hexlet.code.Engine.unCorrect;
 import static hexlet.code.Engine.userAnswer;
 
+
 public final class GcdGame {
+
     private GcdGame() {
     }
     /**
@@ -23,7 +26,6 @@ public final class GcdGame {
         Cli.welcome();
         processGame();
     }
-
     private static void processGame() {
         int score = 0;
         println(GREATEST_COMMON_DIVISOR);
@@ -39,17 +41,16 @@ public final class GcdGame {
                 secondNumber = firstNumber % secondNumber;
                 firstNumber = temp;
                 temp = secondNumber;
-
-                correctAnswer = firstNumber;
-                if (answer.equals(String.valueOf(correctAnswer))) {
-                    score++;
-                    println(CORRECT);
-                } else {
-                    unCorrect(answer, String.valueOf(correctAnswer));
-                    break;
-                }
             }
-            checkWin(score);
+            correctAnswer = firstNumber;
+            if (answer.equals(String.valueOf(correctAnswer))) {
+                score++;
+                println(CORRECT);
+            } else {
+                unCorrect(answer, String.valueOf(correctAnswer));
+                break;
+            }
         }
+        checkWin(score);
     }
 }
