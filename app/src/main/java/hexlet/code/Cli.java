@@ -5,16 +5,18 @@ import java.util.Scanner;
 import static hexlet.code.Engine.println;
 
 public class Cli {
+    private static Scanner scan = new Scanner(System.in);
+    public static String userName;
     /**
      * Статик метод для взаимодействия с пользователем.
      */
     public static void welcome() {
-        Scanner scan = new  Scanner(System.in);
         println("Welcome to the Brain Games!");
         println("May I have your name?");
-        String name = scan.next();
-        System.out.printf("Hello, %s!", name);
+        userName = scan.nextLine();
+        System.out.printf("Hello, %s!", userName);
     }
+
     private Cli() {
     }
 }

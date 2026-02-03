@@ -29,7 +29,7 @@ public class Engine {
      */
     public static void checkWin(int score) {
         if (score == FINAL_SCORE) {
-            println("Congratulations!");
+            System.out.printf("Congratulations, %s!", Cli.userName);
         }
     }
 
