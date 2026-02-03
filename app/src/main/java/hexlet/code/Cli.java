@@ -13,7 +13,7 @@ public class Cli {
         println("Welcome to the Brain Games!");
         println("May I have your name?");
         String name = scan.next();
-        System.out.printf("Welcome, %s!", name);
+        System.out.printf("Hello, %s!", name);
     }
     private Cli() {
     }
