@@ -1,10 +1,12 @@
 package hexlet.code.games;
 
 import hexlet.code.Cli;
-import hexlet.code.Engine;
 
-import static hexlet.code.Engine.Constants.FINAL_SCORE;
-import static hexlet.code.Engine.Constants.OPERATOR;
+import static hexlet.code.Engine.*;
+import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
+import static hexlet.code.Engine.GameConstants.OPERATOR;
+import static hexlet.code.Engine.TextConstants.*;
+import static hexlet.code.Engine.println;
 
 public class CalculatorGame {
 
@@ -22,29 +24,27 @@ public class CalculatorGame {
     private static void processGame() {
         int score = 0;
         while (score < FINAL_SCORE) {
-
-            System.out.println("What is the result of the expression?");
-            int number1 = Engine.randomNumberForCalc();
-            int number2 = Engine.randomNumberForCalc();
-            char op = Engine.randomOperator(OPERATOR);
+            println(RESULT_EXPRESSION);
+            int firstNumber = randomNumberForCalc();
+            int secondNumber = randomNumberForCalc();
+            char op = randomOperator(OPERATOR);
             int correctAnswer = switch (op) {
-                case '+' -> number1 + number2;
-                case '-' -> number1 - number2;
-                case '*' -> number1 * number2;
+                case '+' -> firstNumber + secondNumber;
+                case '-' -> firstNumber - secondNumber;
+                case '*' -> firstNumber * secondNumber;
                 default -> 0;
             };
-            System.out.printf("Question: %d %s %d \n", number1, op, number2);
-            String answer = Engine.userAnswer();
-            Engine.isValidNumber(answer);
+            System.out.printf(QUESTION_THREE_ARGUMENT, firstNumber, op, secondNumber);
+            String answer = userAnswer();
+            isValidNumber(answer);
             if (Integer.parseInt(answer) == correctAnswer) {
                 score++;
-
-                System.out.println("Correct!");
+                println(CORRECT);
             } else {
-                Engine.unCorrect(answer, String.valueOf(correctAnswer));
+                unCorrect(answer, String.valueOf(correctAnswer));
                 break;
             }
         }
-        Engine.checkWin(score);
+        checkWin(score);
     }
 }

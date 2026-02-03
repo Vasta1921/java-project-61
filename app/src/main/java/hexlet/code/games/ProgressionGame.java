@@ -1,11 +1,12 @@
 package hexlet.code.games;
 
 import hexlet.code.Cli;
-import hexlet.code.Engine;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import static hexlet.code.Engine.Constants.FINAL_SCORE;
+import static hexlet.code.Engine.*;
+import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
+import static hexlet.code.Engine.TextConstants.*;
 
 public class ProgressionGame {
     private ProgressionGame() {
@@ -20,29 +21,29 @@ public class ProgressionGame {
     }
     private static void processGame() {
         int score = 0;
-        System.out.println("What number is missing in the progression?");
+        println(NUMBER_MISSING);
         while (score < FINAL_SCORE) {
-            var prog = Engine.getArrayProgression();
-            int lostIndex = ThreadLocalRandom.current().nextInt(0, prog.length + 1);
+            var arrayProgression = getArrayProgression();
+            int lostIndex = ThreadLocalRandom.current().nextInt(0, arrayProgression.length + 1);
             int correctAnswer = 0;
-            System.out.print("Question: ");
-            for (int i = 0; i < prog.length; i++) {
+            print(QUESTION);
+            for (int i = 0; i < arrayProgression.length; i++) {
                 if (i == lostIndex) {
-                    correctAnswer = prog[i];
-                    System.out.print(".. ");
+                    correctAnswer = arrayProgression[i];
+                    print(".. ");
                 } else {
-                    System.out.print(prog[i] + " ");
+                    print(arrayProgression[i] + " ");
                 }
             }
-            String answer = Engine.userAnswer();
+            String answer = userAnswer();
             if (answer.equals(String.valueOf(correctAnswer))) {
                 score++;
-                System.out.println("Correct!");
+                println(CORRECT);
             } else {
-                Engine.unCorrect(answer, String.valueOf(correctAnswer));
+                unCorrect(answer, String.valueOf(correctAnswer));
                 break;
             }
         }
-        Engine.checkWin(score);
+        checkWin(score);
     }
 }
