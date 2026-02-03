@@ -1,17 +1,22 @@
 package hexlet.code.games;
 
 import hexlet.code.Cli;
-
 import java.util.concurrent.ThreadLocalRandom;
 
-import static hexlet.code.Engine.*;
 import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
-import static hexlet.code.Engine.TextConstants.*;
+import static hexlet.code.Engine.TextConstants.NUMBER_MISSING;
+import static hexlet.code.Engine.TextConstants.QUESTION;
+import static hexlet.code.Engine.getArrayProgression;
+import static hexlet.code.Engine.println;
+import static hexlet.code.Engine.print;
+import static hexlet.code.Engine.userAnswer;
+import static hexlet.code.Engine.TextConstants.CORRECT;
+import static hexlet.code.Engine.unCorrect;
+import  static hexlet.code.Engine.checkWin;
 
-public class ProgressionGame {
+public final class ProgressionGame {
     private ProgressionGame() {
     }
-
     /**
      * Игра прогрессия.
      */
@@ -24,7 +29,8 @@ public class ProgressionGame {
         println(NUMBER_MISSING);
         while (score < FINAL_SCORE) {
             var arrayProgression = getArrayProgression();
-            int lostIndex = ThreadLocalRandom.current().nextInt(arrayProgression.length);
+            int lostIndex = ThreadLocalRandom.current()
+                    .nextInt(arrayProgression.length);
             int correctAnswer = arrayProgression[lostIndex];
             print(QUESTION);
             for (int i = 0; i < arrayProgression.length; i++) {

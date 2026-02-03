@@ -2,12 +2,18 @@ package hexlet.code.games;
 
 import hexlet.code.Cli;
 
-import static hexlet.code.Engine.*;
 import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
-import static hexlet.code.Engine.TextConstants.*;
+import static hexlet.code.Engine.TextConstants.CORRECT;
+import static hexlet.code.Engine.TextConstants.GREATEST_COMMON_DIVISOR;
+import static hexlet.code.Engine.TextConstants.QUESTION;
+import static hexlet.code.Engine.checkWin;
+import static hexlet.code.Engine.isValidNumber;
+import static hexlet.code.Engine.println;
+import static hexlet.code.Engine.randomNumber;
+import static hexlet.code.Engine.unCorrect;
+import static hexlet.code.Engine.userAnswer;
 
-public class GcdGame {
-
+public final class GcdGame {
     private GcdGame() {
     }
     /**
@@ -17,6 +23,7 @@ public class GcdGame {
         Cli.welcome();
         processGame();
     }
+
     private static void processGame() {
         int score = 0;
         println(GREATEST_COMMON_DIVISOR);
@@ -24,7 +31,7 @@ public class GcdGame {
             int firstNumber = randomNumber();
             int secondNumber = randomNumber();
             int temp = secondNumber;
-            int correctAnswer = 0;
+            int correctAnswer;
             println(QUESTION + firstNumber + " " + secondNumber);
             String answer = userAnswer();
             isValidNumber(answer);
@@ -32,16 +39,17 @@ public class GcdGame {
                 secondNumber = firstNumber % secondNumber;
                 firstNumber = temp;
                 temp = secondNumber;
+
+                correctAnswer = firstNumber;
+                if (answer.equals(String.valueOf(correctAnswer))) {
+                    score++;
+                    println(CORRECT);
+                } else {
+                    unCorrect(answer, String.valueOf(correctAnswer));
+                    break;
+                }
             }
-            correctAnswer = firstNumber;
-            if (answer.equals(String.valueOf(correctAnswer))) {
-                score++;
-                println(CORRECT);
-            } else {
-                unCorrect(answer, String.valueOf(correctAnswer));
-                break;
-            }
+            checkWin(score);
         }
-        checkWin(score);
     }
 }

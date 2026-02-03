@@ -2,11 +2,21 @@ package hexlet.code.games;
 
 import hexlet.code.Cli;
 
-import static hexlet.code.Engine.*;
+import static hexlet.code.Engine.GameConstants.DIVISION;
 import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
-import static hexlet.code.Engine.TextConstants.*;
+import static hexlet.code.Engine.TextConstants.ANSWER_PRIME;
+import static hexlet.code.Engine.TextConstants.CORRECT;
+import static hexlet.code.Engine.TextConstants.INVALID_ANSWER;
+import static hexlet.code.Engine.TextConstants.NO;
+import static hexlet.code.Engine.TextConstants.QUESTION;
+import static hexlet.code.Engine.TextConstants.YES;
+import static hexlet.code.Engine.checkWin;
+import static hexlet.code.Engine.println;
+import static hexlet.code.Engine.randomNumber;
+import static hexlet.code.Engine.unCorrect;
+import static hexlet.code.Engine.userAnswer;
 
-public class PrimeGame {
+public final class PrimeGame {
 
     private PrimeGame() {
     }
@@ -41,13 +51,13 @@ public class PrimeGame {
         checkWin(score);
     }
 
-    private static boolean isPrime(int number) {
+    private static boolean isPrime(final int number) {
         return number <= 2 || (number % 2 == 1 && checkDivision(number));
     }
 
-    private static boolean checkDivision(int number) {
+    private static boolean checkDivision(final int number) {
         int sqrt = (int) Math.sqrt(number);
-        for (int i = 3; i <= sqrt; i++) {
+        for (int i = DIVISION; i <= sqrt; i++) {
             if (number % i == 0) {
                 return false;
             }

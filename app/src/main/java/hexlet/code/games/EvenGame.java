@@ -2,11 +2,20 @@ package hexlet.code.games;
 
 import hexlet.code.Cli;
 
-import static hexlet.code.Engine.*;
 import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
-import static hexlet.code.Engine.TextConstants.*;
+import static hexlet.code.Engine.TextConstants.ANSWER_EVEN;
+import static hexlet.code.Engine.TextConstants.INVALID_ANSWER;
+import static hexlet.code.Engine.TextConstants.NO;
+import static hexlet.code.Engine.userAnswer;
+import static hexlet.code.Engine.TextConstants.QUESTION;
+import static hexlet.code.Engine.unCorrect;
+import static hexlet.code.Engine.checkWin;
+import static hexlet.code.Engine.TextConstants.YES;
+import static hexlet.code.Engine.TextConstants.CORRECT;
+import static hexlet.code.Engine.println;
+import static hexlet.code.Engine.randomNumber;
 
-public class EvenGame {
+public final class EvenGame {
 
     private EvenGame() {
     }
@@ -39,7 +48,7 @@ public class EvenGame {
         }
         checkWin(score);
     }
-    private static boolean isEven(int number) {
+    private static boolean isEven(final int number) {
         return number % 2 == 0;
     }
 }
