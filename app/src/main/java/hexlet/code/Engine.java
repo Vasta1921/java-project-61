@@ -19,8 +19,8 @@ public class Engine {
      * @param correctAnswer правильный ответ.
      */
     public static void unCorrect(String answer, String correctAnswer) {
-        println("'" + answer + "' is wrong answer ;(. Correct answer was '" + correctAnswer
-                + "'.\nLet's try again");
+        System.out.printf("'" + answer + "' is wrong answer ;(. Correct answer was '" + correctAnswer
+                + "'.\nLet's try again, %s!", Cli.userName);
     }
 
     /**
