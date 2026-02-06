@@ -1,59 +1,50 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
+import hexlet.code.Engine;
 
 import static hexlet.code.Engine.GameConstants.DIVISION;
-import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
-import static hexlet.code.Engine.TextConstants.ANSWER_PRIME;
-import static hexlet.code.Engine.TextConstants.CORRECT;
-import static hexlet.code.Engine.TextConstants.INVALID_ANSWER;
-import static hexlet.code.Engine.TextConstants.NO;
-import static hexlet.code.Engine.TextConstants.QUESTION;
-import static hexlet.code.Engine.TextConstants.YES;
-import static hexlet.code.Engine.checkWin;
-import static hexlet.code.Engine.println;
-import static hexlet.code.Engine.randomNumber;
-import static hexlet.code.Engine.unCorrect;
-import static hexlet.code.Engine.userAnswer;
+
+import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
+
 
 public final class PrimeGame {
 
     private PrimeGame() {
     }
+
     /**
-     * Игра простое число или нет.
+     * Правило игры простое число.
      */
-    public static void primeGame() {
-        Cli.welcome();
-        processGame();
+    private static final String ANSWER_PRIME =
+            "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+
+    /**
+     * Возврат правил.
+     * @return правила
+     */
+    public static String getRules() {
+        return ANSWER_PRIME;
     }
 
-    private static void processGame() {
-        int score = 0;
-        println(ANSWER_PRIME);
-        while (score < FINAL_SCORE) {
-            int number = randomNumber();
-            println(QUESTION + number);
-            String answer = userAnswer();
-            if (!answer.equals(YES) && !answer.equals(NO)) {
-                println(INVALID_ANSWER);
-                break;
-            }
-            String correctAnswer = isPrime(number) ? YES : NO;
-            if (answer.equals(correctAnswer)) {
-                score++;
-                println(CORRECT);
-            } else {
-                unCorrect(answer, correctAnswer);
-                break;
-            }
+    /**
+     * Генерация игры.
+     * @return возврат вопросов и ответов в массиве
+     */
+    public static String[][] getRounds() {
+        String[][] rounds = new String[ROUNDS_COUNT][2];
+
+        for (int i = 0; i < ROUNDS_COUNT; i++) {
+            int number = Engine.randomNumber();
+
+            rounds[i][0] = String.valueOf(number);
+            rounds[i][1] = isPrime(number) ? "yes" : "no";
         }
-        checkWin(score);
-    }
 
-    private static boolean isPrime(final int number) {
-        return number <= 2 || (number % 2 == 1 && checkDivision(number));
+        return rounds;
     }
+        private static boolean isPrime(final int number) {
+            return number <= 2 || (number % 2 == 1 && checkDivision(number));
+        }
 
     private static boolean checkDivision(final int number) {
         int sqrt = (int) Math.sqrt(number);

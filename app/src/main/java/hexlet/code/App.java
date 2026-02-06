@@ -5,6 +5,7 @@ import hexlet.code.games.EvenGame;
 import hexlet.code.games.GcdGame;
 import hexlet.code.games.PrimeGame;
 import hexlet.code.games.ProgressionGame;
+
 import java.util.Scanner;
 
 import static hexlet.code.Engine.GameConstants.FIFTH_BUTTON;
@@ -19,6 +20,7 @@ import static hexlet.code.Engine.println;
 public final class App {
     /**
      * Метод запускающий скрипт.
+     *
      * @param args метод.
      */
     public static void main(final String[] args) {
@@ -42,24 +44,35 @@ public final class App {
                 Cli.welcome();
                 break;
             case SECOND_BUTTON:
-                EvenGame.evenOrNot();
+                Engine.processGame(
+                        EvenGame.getRules(),
+                        EvenGame.getRounds());
                 break;
             case THIRD_BUTTON:
-                CalculatorGame.playCalculatorGame();
+                Engine.processGame(
+                        CalculatorGame.getRules(),
+                        CalculatorGame.getRounds());
                 break;
             case FOURTH_BUTTON:
-                GcdGame.gcdGame();
+                Engine.processGame(
+                        GcdGame.getRules(),
+                        GcdGame.getRounds());
                 break;
             case FIFTH_BUTTON:
-                ProgressionGame.progressionGame();
+                Engine.processGame(
+                        ProgressionGame.getRules(),
+                        ProgressionGame.getRounds());
                 break;
             case SIXTH_BUTTON:
-                PrimeGame.primeGame();
+                Engine.processGame(
+                        PrimeGame.getRules(),
+                        PrimeGame.getRounds());
                 break;
             default:
-                println("Unknown option");
+                println("Unknown option " + choice);
         }
     }
+
     private App() {
     }
 }

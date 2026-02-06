@@ -5,9 +5,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static hexlet.code.Engine.GameConstants.ARRAY_LENGTH_FROM;
 import static hexlet.code.Engine.GameConstants.ARRAY_LENGTH_TO;
-import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
 import static hexlet.code.Engine.GameConstants.NUMBER_FROM;
 import static hexlet.code.Engine.GameConstants.NUMBER_TO;
+import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
 import static hexlet.code.Engine.GameConstants.STEP_TO;
 
 public final class Engine {
@@ -24,32 +24,22 @@ public final class Engine {
      *
      * @param answer        ответ пользователя.
      * @param correctAnswer правильный ответ.
+     * @param userName      имя пользователя
      */
     public static void unCorrect(final String answer,
-                                 final String correctAnswer) {
+                                 final String correctAnswer,
+                                 final String userName) {
         System.out.printf(
                 "'%s' is wrong answer ;(. Correct answer was '%s'.%n"
                         + "Let's try again, %s!",
                 answer,
                 correctAnswer,
-                Cli.getUserName()
+                userName
         );
     }
-
-
-    /**
-     * Поздравление с победой.
-     *
-     * @param score счет игрока
-     */
-    public static void checkWin(final int score) {
-        if (score == FINAL_SCORE) {
-            System.out.printf("Congratulations, %s!", Cli.getUserName());
-        }
-    }
-
     /**
      * Рандомное число от -100 до 99.
+     *
      * @return int рандомное число.
      */
     public static int randomNumberForCalc() {
@@ -58,6 +48,7 @@ public final class Engine {
 
     /**
      * Рандомное число от 1 до 99.
+     *
      * @return int рандомное число.
      */
     public static int randomNumber() {
@@ -83,18 +74,18 @@ public final class Engine {
         return SCANNER.nextLine();
     }
 
-    /**
-     * Проверка на валидное число.
-     *
-     * @param number ввод пользователя.
-     */
-    public static void isValidNumber(final String number) {
-        try {
-            Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            println("Please enter a valid number.");
-        }
-    }
+//    /**
+//     * Проверка на валидное число.
+//     *
+//     * @param number ввод пользователя.
+//     */
+//    public static void isValidNumber(final String number) {
+//        try {
+//            Integer.parseInt(number);
+//        } catch (NumberFormatException e) {
+//            println("Please enter a valid number.");
+//        }
+//    }
 
     /**
      * Прогрессия чисел.
@@ -116,28 +107,27 @@ public final class Engine {
 
     /**
      * Вывод в консоль.
+     *
      * @param message сообщение в консоль.
      */
     public static void println(final String message) {
         System.out.println(message);
     }
-    /**
-     * Вывод в консоль.
-     * @param message сообщение в консоль.
-     */
-    public static void print(final String message) {
-        System.out.print(message);
-    }
+
+//    /**
+//     * Вывод в консоль.
+//     *
+//     * @param message сообщение в консоль.
+//     */
+//    public static void print(final String message) {
+//        System.out.print(message);
+//    }
 
     public static class GameConstants {
         /**
-         * Константа финального счета.
+         * Колличество раундов.
          */
-        public static final int FINAL_SCORE = 3;
-        /**
-         * Константа операторов.
-         */
-        public static final char[] OPERATOR = {'+', '-', '*'};
+        public static final int ROUNDS_COUNT = 3;
         /**
          * Нулевая кнопка.
          */
@@ -194,57 +184,43 @@ public final class Engine {
 
     public static class TextConstants {
         /**
-         * Вывод для игры калькулятор.
-         */
-        public static final String RESULT_EXPRESSION =
-                "What is the result of the expression?";
-        /**
-         * Вывод для игры калькулятор, числа и оператор.
-         */
-        public static final String QUESTION_THREE_ARGUMENT =
-                "Question: %d %s %d \n";
-        /**
          * Вывод для правильного ответа.
          */
         public static final String CORRECT = "Correct!";
         /**
-         * Вывод для игры четное/нечетное.
-         */
-        public static final String ANSWER_EVEN =
-                "Answer 'yes' if the number is even, otherwise answer 'no'.!";
-        /**
-         * Переменная для сравнения результата.
-         */
-        public static final String YES = "yes";
-        /**
-         * Переменная для сравнения результата.
-         */
-        public static final String NO = "no";
-        /**
          * Вопрос.
          */
         public static final String QUESTION = "Question: ";
-        /**
-         * Вывод если введено не корректный ответ.
-         */
-        public static final String INVALID_ANSWER = "Invalid answer.";
-        /**
-         * Вывод для игры простое число.
-         */
-        public static final String GREATEST_COMMON_DIVISOR =
-                "Find the greatest common divisor of given numbers.";
-        /**
-         * Вопрос для игры простое число.
-         */
-        public static final String ANSWER_PRIME =
-                "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
-        /**
-         * Вывод для игры пропущенное число в прогрессии.
-         */
-        public static final String NUMBER_MISSING =
-                "What number is missing in the progression?";
-
+//        /**
+//         * Вывод если введено не корректный ответ.
+//         */
+//        public static final String INVALID_ANSWER = "Invalid answer.";
     }
 
+    /**
+     * Запуск игры.
+     * @param rules правила заданной игры
+     * @param rounds распечатка раундов заданной игры
+     */
+    public static void processGame(final String rules,
+                                   final String[][] rounds) {
+        var userName = Cli.welcome();
+        println(rules);
+        for (int i = 0; i < ROUNDS_COUNT; i++) {
+            String question = rounds[i][0];
+            String correctAnswer = rounds[i][1];
+
+            System.out.println(TextConstants.QUESTION + question);
+            String userAnswer = userAnswer();
+
+            if (!userAnswer.equals(correctAnswer)) {
+                unCorrect(userAnswer, correctAnswer, userName);
+                return;
+            }
+            println(TextConstants.CORRECT);
+        }
+        System.out.printf("Congratulations, %s!", userName);
+    }
 }
+
 

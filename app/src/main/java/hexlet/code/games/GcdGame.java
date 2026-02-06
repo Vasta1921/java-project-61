@@ -1,56 +1,56 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
+import hexlet.code.Engine;
 
+import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
 
-import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
-import static hexlet.code.Engine.TextConstants.CORRECT;
-import static hexlet.code.Engine.TextConstants.GREATEST_COMMON_DIVISOR;
-import static hexlet.code.Engine.TextConstants.QUESTION;
-import static hexlet.code.Engine.checkWin;
-import static hexlet.code.Engine.isValidNumber;
-import static hexlet.code.Engine.println;
-import static hexlet.code.Engine.randomNumber;
-import static hexlet.code.Engine.unCorrect;
-import static hexlet.code.Engine.userAnswer;
 
 
 public final class GcdGame {
 
     private GcdGame() {
     }
+
     /**
-     * Игра НОД.
+     * Правило игры миниальный делитель.
      */
-    public static void gcdGame() {
-        Cli.welcome();
-        processGame();
+    private static final String GREATEST_COMMON_DIVISOR =
+            "Find the greatest common divisor of given numbers.";
+
+    /**
+     * Возврат правил.
+     * @return правило
+     */
+    public static String getRules() {
+        return  GREATEST_COMMON_DIVISOR;
     }
-    private static void processGame() {
-        int score = 0;
-        println(GREATEST_COMMON_DIVISOR);
-        while (score < FINAL_SCORE) {
-            int firstNumber = randomNumber();
-            int secondNumber = randomNumber();
-            int temp = secondNumber;
-            int correctAnswer;
-            println(QUESTION + firstNumber + " " + secondNumber);
-            String answer = userAnswer();
-            isValidNumber(answer);
-            while (secondNumber != 0) {
-                secondNumber = firstNumber % secondNumber;
-                firstNumber = temp;
-                temp = secondNumber;
-            }
-            correctAnswer = firstNumber;
-            if (answer.equals(String.valueOf(correctAnswer))) {
-                score++;
-                println(CORRECT);
-            } else {
-                unCorrect(answer, String.valueOf(correctAnswer));
-                break;
-            }
+
+    /**
+     * Генерация игры.
+     * @return вопросы и ответы.
+     */
+    public static String[][] getRounds() {
+        String[][] rounds = new String[ROUNDS_COUNT][2];
+
+        for (int i = 0; i < ROUNDS_COUNT; i++) {
+            int firstNumber = Engine.randomNumber();
+            int secondNumber = Engine.randomNumber();
+
+            int gcd = calculateGcd(firstNumber, secondNumber);
+
+            rounds[i][0] = firstNumber + " " + secondNumber;
+            rounds[i][1] = String.valueOf(gcd);
         }
-        checkWin(score);
+
+        return rounds;
+    }
+    @SuppressWarnings("checkstyle:FinalParameters")
+    private static int calculateGcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
     }
 }

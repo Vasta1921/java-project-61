@@ -13,23 +13,14 @@ public final class Cli {
      */
     private static final Scanner SCANNER = new Scanner(System.in);
     /**
-     * Имя пользователя.
-     */
-    private static String userName;
-    /**
-     * Геттер для имени.
-     * @return имя юзера
-     */
-    public static String getUserName() {
-        return userName;
-    }
-    /**
      * Статик метод для взаимодействия с пользователем.
+     * @return имя пользователя
      */
-    public static void welcome() {
+    public static String welcome() {
         println("Welcome to the Brain Games!");
         println("May I have your name?");
-        userName = SCANNER.nextLine();
+        String userName = SCANNER.nextLine();
         System.out.printf("Hello, %s!", userName);
+        return userName;
     }
 }

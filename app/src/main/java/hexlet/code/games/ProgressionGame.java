@@ -1,54 +1,60 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
+import hexlet.code.Engine;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
-import static hexlet.code.Engine.TextConstants.NUMBER_MISSING;
-import static hexlet.code.Engine.TextConstants.QUESTION;
-import static hexlet.code.Engine.getArrayProgression;
-import static hexlet.code.Engine.println;
-import static hexlet.code.Engine.print;
-import static hexlet.code.Engine.userAnswer;
-import static hexlet.code.Engine.TextConstants.CORRECT;
-import static hexlet.code.Engine.unCorrect;
-import  static hexlet.code.Engine.checkWin;
+import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
 
 public final class ProgressionGame {
     private ProgressionGame() {
     }
+
     /**
-     * Игра прогрессия.
+     * Правило игры прогрессии.
      */
-    public static void progressionGame() {
-        Cli.welcome();
-        processGame();
+    private static final String NUMBER_MISSING =
+            "What number is missing in the progression?";
+
+    /**
+     * Возврат правил.
+     * @return правила.
+     */
+    public static String getRules() {
+        return NUMBER_MISSING;
     }
-    private static void processGame() {
-        int score = 0;
-        println(NUMBER_MISSING);
-        while (score < FINAL_SCORE) {
-            var arrayProgression = getArrayProgression();
-            int lostIndex = ThreadLocalRandom.current()
-                    .nextInt(arrayProgression.length);
-            int correctAnswer = arrayProgression[lostIndex];
-            print(QUESTION);
-            for (int i = 0; i < arrayProgression.length; i++) {
-                if (i == lostIndex) {
-                    print(".. ");
-                } else {
-                    print(arrayProgression[i] + " ");
-                }
-            }
-            String answer = userAnswer();
-            if (answer.equals(String.valueOf(correctAnswer))) {
-                score++;
-                println(CORRECT);
+
+    /**
+     * Генерация раундов.
+     * @return массив раунда и правильного ответа
+     */
+    public static String[][] getRounds() {
+        String[][] rounds = new String[ROUNDS_COUNT][2];
+
+        for (int i = 0; i < ROUNDS_COUNT; i++) {
+            int[] progression = Engine.getArrayProgression();
+            int hiddenIndex = ThreadLocalRandom.current()
+                    .nextInt(progression.length);
+
+            int correctAnswer = progression[hiddenIndex];
+
+            rounds[i][0] = buildQuestion(progression, hiddenIndex);
+            rounds[i][1] = String.valueOf(correctAnswer);
+        }
+
+        return rounds;
+    }
+    private static String buildQuestion(final int[] progression,
+                                        final int hiddenIndex) {
+        StringBuilder question = new StringBuilder();
+
+        for (int i = 0; i < progression.length; i++) {
+            if (i == hiddenIndex) {
+                question.append(".. ");
             } else {
-                unCorrect(answer, String.valueOf(correctAnswer));
-                break;
+                question.append(progression[i]).append(" ");
             }
         }
-        checkWin(score);
+
+        return question.toString().trim();
     }
 }

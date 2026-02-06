@@ -1,58 +1,58 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
+import hexlet.code.Engine;
 
-import static hexlet.code.Engine.GameConstants.FINAL_SCORE;
-import static hexlet.code.Engine.GameConstants.OPERATOR;
-import static hexlet.code.Engine.randomOperator;
-import static hexlet.code.Engine.userAnswer;
-import static hexlet.code.Engine.isValidNumber;
-import static hexlet.code.Engine.unCorrect;
-import static hexlet.code.Engine.checkWin;
-import static hexlet.code.Engine.TextConstants.RESULT_EXPRESSION;
-import static hexlet.code.Engine.TextConstants.QUESTION_THREE_ARGUMENT;
-import static hexlet.code.Engine.TextConstants.CORRECT;
-import static hexlet.code.Engine.println;
-import static hexlet.code.Engine.randomNumberForCalc;
+import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
 
 public final class CalculatorGame {
-
     private CalculatorGame() {
+    }
+    /**
+     * Правила игры.
+     */
+    private static final String RESULT_EXPRESSION =
+            "What is the result of the expression?";
+    /**
+     * Массив операторов.
+     */
+    private static final char[] OPERATORS = {'+', '-', '*'};
+
+    /**
+     * Получение правила игры.
+     * @return правила.
+     */
+    public static String getRules() {
+        return RESULT_EXPRESSION;
     }
 
     /**
-     * Игра калькулятор.
+     * Раунды игры.
+     * @return массив раундов.
      */
-    public static void playCalculatorGame() {
-        Cli.welcome();
-        processGame();
+    public static String[][] getRounds() {
+        String[][] rounds = new String[ROUNDS_COUNT][2];
+
+        for (int i = 0; i < ROUNDS_COUNT; i++) {
+
+            int a = Engine.randomNumberForCalc();
+            int b = Engine.randomNumberForCalc();
+            char op = Engine.randomOperator(OPERATORS);
+
+            int correctAnswer = calculate(a, b, op);
+
+            rounds[i][0] = a + " " + op + " " + b;
+            rounds[i][1] = String.valueOf(correctAnswer);
+        }
+
+        return rounds;
     }
 
-    private static void processGame() {
-        int score = 0;
-        while (score < FINAL_SCORE) {
-            println(RESULT_EXPRESSION);
-            int firstNumber = randomNumberForCalc();
-            int secondNumber = randomNumberForCalc();
-            char op = randomOperator(OPERATOR);
-            int correctAnswer = switch (op) {
-                case '+' -> firstNumber + secondNumber;
-                case '-' -> firstNumber - secondNumber;
-                case '*' -> firstNumber * secondNumber;
-                default -> 0;
-            };
-            System.out.printf(
-                    QUESTION_THREE_ARGUMENT, firstNumber, op, secondNumber);
-            String answer = userAnswer();
-            isValidNumber(answer);
-            if (Integer.parseInt(answer) == correctAnswer) {
-                score++;
-                println(CORRECT);
-            } else {
-                unCorrect(answer, String.valueOf(correctAnswer));
-                break;
-            }
-        }
-        checkWin(score);
+    private static int calculate(final int a, final int b, final char op) {
+        return switch (op) {
+            case '+' -> a + b;
+            case '-' -> a - b;
+            case '*' -> a * b;
+            default -> throw new IllegalStateException("Unknown operator");
+        };
     }
 }
