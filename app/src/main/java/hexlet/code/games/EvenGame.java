@@ -20,7 +20,7 @@ public final class EvenGame {
      * Возврат правил.
      * @return правило.
      */
-    public static String getRules() {
+    private static String getRules() {
         return ANSWER_EVEN;
     }
 
@@ -28,7 +28,7 @@ public final class EvenGame {
      * Генерация игры.
      * @return вопросы и ответы.
      */
-    public static String[][] getRounds() {
+    private static String[][] getRounds() {
         String[][] rounds = new String[ROUNDS_COUNT][2];
 
         for (int i = 0; i < ROUNDS_COUNT; i++) {
@@ -42,5 +42,14 @@ public final class EvenGame {
 
     private static boolean isEven(final int number) {
         return number % 2 == 0;
+    }
+
+    /**
+     * Запуск игры.
+     */
+    public static void playGame() {
+        String rules = getRules();
+        String[][] rounds = getRounds();
+        Engine.processGame(rules, rounds);
     }
 }

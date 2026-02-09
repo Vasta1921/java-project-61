@@ -19,7 +19,7 @@ public final class ProgressionGame {
      * Возврат правил.
      * @return правила.
      */
-    public static String getRules() {
+    private static String getRules() {
         return NUMBER_MISSING;
     }
 
@@ -27,7 +27,7 @@ public final class ProgressionGame {
      * Генерация раундов.
      * @return массив раунда и правильного ответа
      */
-    public static String[][] getRounds() {
+    private static String[][] getRounds() {
         String[][] rounds = new String[ROUNDS_COUNT][2];
 
         for (int i = 0; i < ROUNDS_COUNT; i++) {
@@ -56,5 +56,13 @@ public final class ProgressionGame {
         }
 
         return question.toString().trim();
+    }
+    /**
+     * Запуск игры.
+     */
+    public static void playGame() {
+        String rules = getRules();
+        String[][] rounds = getRounds();
+        Engine.processGame(rules, rounds);
     }
 }

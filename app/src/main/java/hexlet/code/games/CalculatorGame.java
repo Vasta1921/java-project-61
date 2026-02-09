@@ -16,20 +16,18 @@ public final class CalculatorGame {
      * Массив операторов.
      */
     private static final char[] OPERATORS = {'+', '-', '*'};
-
     /**
      * Получение правила игры.
      * @return правила.
      */
-    public static String getRules() {
+    private static String getRules() {
         return RESULT_EXPRESSION;
     }
-
     /**
      * Раунды игры.
      * @return массив раундов.
      */
-    public static String[][] getRounds() {
+    private static String[][] getRounds() {
         String[][] rounds = new String[ROUNDS_COUNT][2];
 
         for (int i = 0; i < ROUNDS_COUNT; i++) {
@@ -46,7 +44,6 @@ public final class CalculatorGame {
 
         return rounds;
     }
-
     private static int calculate(final int a, final int b, final char op) {
         return switch (op) {
             case '+' -> a + b;
@@ -54,5 +51,13 @@ public final class CalculatorGame {
             case '*' -> a * b;
             default -> throw new IllegalStateException("Unknown operator");
         };
+    }
+    /**
+     * Метод запускаюший игру.
+     */
+    public static void playGame() {
+        String rules = getRules();
+        String[][] rounds = getRounds();
+        Engine.processGame(rules, rounds);
     }
 }

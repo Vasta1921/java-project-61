@@ -73,20 +73,6 @@ public final class Engine {
     public static String userAnswer() {
         return SCANNER.nextLine();
     }
-
-//    /**
-//     * Проверка на валидное число.
-//     *
-//     * @param number ввод пользователя.
-//     */
-//    public static void isValidNumber(final String number) {
-//        try {
-//            Integer.parseInt(number);
-//        } catch (NumberFormatException e) {
-//            println("Please enter a valid number.");
-//        }
-//    }
-
     /**
      * Прогрессия чисел.
      *

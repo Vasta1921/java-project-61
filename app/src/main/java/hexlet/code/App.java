@@ -44,29 +44,19 @@ public final class App {
                 Cli.welcome();
                 break;
             case SECOND_BUTTON:
-                Engine.processGame(
-                        EvenGame.getRules(),
-                        EvenGame.getRounds());
+                EvenGame.playGame();
                 break;
             case THIRD_BUTTON:
-                Engine.processGame(
-                        CalculatorGame.getRules(),
-                        CalculatorGame.getRounds());
+                CalculatorGame.playGame();
                 break;
             case FOURTH_BUTTON:
-                Engine.processGame(
-                        GcdGame.getRules(),
-                        GcdGame.getRounds());
+                GcdGame.playGame();
                 break;
             case FIFTH_BUTTON:
-                Engine.processGame(
-                        ProgressionGame.getRules(),
-                        ProgressionGame.getRounds());
+                ProgressionGame.playGame();
                 break;
             case SIXTH_BUTTON:
-                Engine.processGame(
-                        PrimeGame.getRules(),
-                        PrimeGame.getRounds());
+                PrimeGame.playGame();
                 break;
             default:
                 println("Unknown option " + choice);

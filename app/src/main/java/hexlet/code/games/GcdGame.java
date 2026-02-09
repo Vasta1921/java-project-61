@@ -21,7 +21,7 @@ public final class GcdGame {
      * Возврат правил.
      * @return правило
      */
-    public static String getRules() {
+    private static String getRules() {
         return  GREATEST_COMMON_DIVISOR;
     }
 
@@ -29,7 +29,7 @@ public final class GcdGame {
      * Генерация игры.
      * @return вопросы и ответы.
      */
-    public static String[][] getRounds() {
+    private static String[][] getRounds() {
         String[][] rounds = new String[ROUNDS_COUNT][2];
 
         for (int i = 0; i < ROUNDS_COUNT; i++) {
@@ -52,5 +52,14 @@ public final class GcdGame {
             a = temp;
         }
         return a;
+    }
+
+    /**
+     * Запуск игры.
+     */
+    public static void playGame() {
+        String rules = getRules();
+        String[][] rounds = getRounds();
+        Engine.processGame(rules, rounds);
     }
 }

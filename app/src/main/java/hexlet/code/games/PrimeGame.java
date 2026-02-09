@@ -22,7 +22,7 @@ public final class PrimeGame {
      * Возврат правил.
      * @return правила
      */
-    public static String getRules() {
+    private static String getRules() {
         return ANSWER_PRIME;
     }
 
@@ -30,7 +30,7 @@ public final class PrimeGame {
      * Генерация игры.
      * @return возврат вопросов и ответов в массиве
      */
-    public static String[][] getRounds() {
+    private static String[][] getRounds() {
         String[][] rounds = new String[ROUNDS_COUNT][2];
 
         for (int i = 0; i < ROUNDS_COUNT; i++) {
@@ -54,5 +54,14 @@ public final class PrimeGame {
             }
         }
         return true;
+    }
+
+    /**
+     * Запуск игры.
+     */
+    public static void playGame() {
+        String rules = getRules();
+        String[][] rounds = getRounds();
+        Engine.processGame(rules, rounds);
     }
 }
