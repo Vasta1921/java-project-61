@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.Utils;
 
 import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
 
@@ -32,7 +33,7 @@ public final class EvenGame {
         String[][] rounds = new String[ROUNDS_COUNT][2];
 
         for (int i = 0; i < ROUNDS_COUNT; i++) {
-            int number = Engine.randomNumber();
+            int number = Utils.randomNumber();
 
             rounds[i][0] = String.valueOf(number);
             rounds[i][1] = isEven(number) ? "yes" : "no";

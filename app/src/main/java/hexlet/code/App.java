@@ -15,7 +15,6 @@ import static hexlet.code.Engine.GameConstants.SECOND_BUTTON;
 import static hexlet.code.Engine.GameConstants.SIXTH_BUTTON;
 import static hexlet.code.Engine.GameConstants.THIRD_BUTTON;
 import static hexlet.code.Engine.GameConstants.ZERO_BUTTON;
-import static hexlet.code.Engine.println;
 
 public final class App {
     /**
@@ -25,8 +24,8 @@ public final class App {
      */
     public static void main(final String[] args) {
         Scanner scan = new Scanner(System.in);
-        println("Please enter the game number and press Enter.");
-        println("""
+        System.out.println("Please enter the game number and press Enter.");
+        System.out.println("""
                 1 - Greet\s
                 2 - Even\s
                 3 - Calc\s
@@ -35,7 +34,7 @@ public final class App {
                 6 - Prime\s
                 0 - Exit""");
         int choice = scan.nextInt();
-        println("Your choice: " + choice);
+        System.out.println("Your choice: " + choice);
         switch (choice) {
             case ZERO_BUTTON:
                 System.exit(0);
@@ -59,7 +58,7 @@ public final class App {
                 PrimeGame.playGame();
                 break;
             default:
-                println("Unknown option " + choice);
+                System.out.println("Unknown option " + choice);
         }
     }
 

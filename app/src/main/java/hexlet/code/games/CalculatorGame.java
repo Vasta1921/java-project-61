@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.Utils;
 
 import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
 
@@ -32,8 +33,8 @@ public final class CalculatorGame {
 
         for (int i = 0; i < ROUNDS_COUNT; i++) {
 
-            int a = Engine.randomNumberForCalc();
-            int b = Engine.randomNumberForCalc();
+            int a = Utils.randomNumberForCalc();
+            int b = Utils.randomNumberForCalc();
             char op = Engine.randomOperator(OPERATORS);
 
             int correctAnswer = calculate(a, b, op);
@@ -41,7 +42,6 @@ public final class CalculatorGame {
             rounds[i][0] = a + " " + op + " " + b;
             rounds[i][1] = String.valueOf(correctAnswer);
         }
-
         return rounds;
     }
     private static int calculate(final int a, final int b, final char op) {
@@ -49,7 +49,8 @@ public final class CalculatorGame {
             case '+' -> a + b;
             case '-' -> a - b;
             case '*' -> a * b;
-            default -> throw new IllegalStateException("Unknown operator");
+            default ->
+                    throw new IllegalStateException("Unknown operator: " + op);
         };
     }
     /**

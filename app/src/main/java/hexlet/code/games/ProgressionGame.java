@@ -1,9 +1,14 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+
 import java.util.concurrent.ThreadLocalRandom;
 
+import static hexlet.code.Engine.GameConstants.ARRAY_LENGTH_FROM;
+import static hexlet.code.Engine.GameConstants.ARRAY_LENGTH_TO;
+import static hexlet.code.Engine.GameConstants.NUMBER_TO;
 import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
+import static hexlet.code.Engine.GameConstants.STEP_TO;
 
 public final class ProgressionGame {
     private ProgressionGame() {
@@ -17,46 +22,42 @@ public final class ProgressionGame {
 
     /**
      * Возврат правил.
+     *
      * @return правила.
      */
     private static String getRules() {
         return NUMBER_MISSING;
     }
-
     /**
      * Генерация раундов.
+     *
      * @return массив раунда и правильного ответа
      */
+    private static String[] generateRound() {
+        int firstNumber = ThreadLocalRandom.current().nextInt(1, NUMBER_TO);
+        int step = ThreadLocalRandom.current().nextInt(2, STEP_TO);
+        int lengthArray = ThreadLocalRandom.current()
+                .nextInt(ARRAY_LENGTH_FROM, ARRAY_LENGTH_TO);
+        String[] progression = new String[lengthArray];
+        int hiddenIndex = ThreadLocalRandom.current().nextInt(0, lengthArray);
+        int correctAnswer = firstNumber + hiddenIndex * step;
+        for (int i = 0; i < lengthArray; i++) {
+            int value = firstNumber + i * step;
+            progression[i] = (i == hiddenIndex) ? ".." : String.valueOf(value);
+        }
+        return new String[]{
+                String.join(" ", progression),
+                String.valueOf(correctAnswer)
+        };
+    }
     private static String[][] getRounds() {
         String[][] rounds = new String[ROUNDS_COUNT][2];
-
         for (int i = 0; i < ROUNDS_COUNT; i++) {
-            int[] progression = Engine.getArrayProgression();
-            int hiddenIndex = ThreadLocalRandom.current()
-                    .nextInt(progression.length);
-
-            int correctAnswer = progression[hiddenIndex];
-
-            rounds[i][0] = buildQuestion(progression, hiddenIndex);
-            rounds[i][1] = String.valueOf(correctAnswer);
+            rounds[i] = generateRound();
         }
-
         return rounds;
     }
-    private static String buildQuestion(final int[] progression,
-                                        final int hiddenIndex) {
-        StringBuilder question = new StringBuilder();
 
-        for (int i = 0; i < progression.length; i++) {
-            if (i == hiddenIndex) {
-                question.append(".. ");
-            } else {
-                question.append(progression[i]).append(" ");
-            }
-        }
-
-        return question.toString().trim();
-    }
     /**
      * Запуск игры.
      */

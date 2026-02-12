@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.Utils;
 
 import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
 
@@ -33,8 +34,8 @@ public final class GcdGame {
         String[][] rounds = new String[ROUNDS_COUNT][2];
 
         for (int i = 0; i < ROUNDS_COUNT; i++) {
-            int firstNumber = Engine.randomNumber();
-            int secondNumber = Engine.randomNumber();
+            int firstNumber = Utils.randomNumber();
+            int secondNumber = Utils.randomNumber();
 
             int gcd = calculateGcd(firstNumber, secondNumber);
 

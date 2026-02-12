@@ -3,12 +3,7 @@ package hexlet.code;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static hexlet.code.Engine.GameConstants.ARRAY_LENGTH_FROM;
-import static hexlet.code.Engine.GameConstants.ARRAY_LENGTH_TO;
-import static hexlet.code.Engine.GameConstants.NUMBER_FROM;
-import static hexlet.code.Engine.GameConstants.NUMBER_TO;
 import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
-import static hexlet.code.Engine.GameConstants.STEP_TO;
 
 public final class Engine {
     private Engine() {
@@ -38,24 +33,6 @@ public final class Engine {
         );
     }
     /**
-     * Рандомное число от -100 до 99.
-     *
-     * @return int рандомное число.
-     */
-    public static int randomNumberForCalc() {
-        return ThreadLocalRandom.current().nextInt(NUMBER_FROM, NUMBER_TO);
-    }
-
-    /**
-     * Рандомное число от 1 до 99.
-     *
-     * @return int рандомное число.
-     */
-    public static int randomNumber() {
-        return ThreadLocalRandom.current().nextInt(1, NUMBER_TO);
-    }
-
-    /**
      * Рандомный оператор.
      *
      * @param operator массив операторов.
@@ -73,42 +50,6 @@ public final class Engine {
     public static String userAnswer() {
         return SCANNER.nextLine();
     }
-    /**
-     * Прогрессия чисел.
-     *
-     * @return прогрессия.
-     */
-    public static int[] getArrayProgression() {
-        int firstNumber = ThreadLocalRandom.current().nextInt(1, NUMBER_TO);
-        int step = ThreadLocalRandom.current().nextInt(2, STEP_TO);
-        int lengthArray = ThreadLocalRandom.current()
-                .nextInt(ARRAY_LENGTH_FROM, ARRAY_LENGTH_TO);
-        int[] progression = new int[lengthArray];
-        progression[0] = firstNumber;
-        for (int i = 1; i < lengthArray; i++) {
-            progression[i] = progression[i - 1] + step;
-        }
-        return progression;
-    }
-
-    /**
-     * Вывод в консоль.
-     *
-     * @param message сообщение в консоль.
-     */
-    public static void println(final String message) {
-        System.out.println(message);
-    }
-
-//    /**
-//     * Вывод в консоль.
-//     *
-//     * @param message сообщение в консоль.
-//     */
-//    public static void print(final String message) {
-//        System.out.print(message);
-//    }
-
     public static class GameConstants {
         /**
          * Колличество раундов.
@@ -126,10 +67,6 @@ public final class Engine {
          * Вторая кнопка.
          */
         public static final int SECOND_BUTTON = 2;
-        /**
-         * Константа для проверки деления.
-         */
-        public static final int DIVISION = 3;
         /**
          * Третья кнопка.
          */
@@ -177,12 +114,7 @@ public final class Engine {
          * Вопрос.
          */
         public static final String QUESTION = "Question: ";
-//        /**
-//         * Вывод если введено не корректный ответ.
-//         */
-//        public static final String INVALID_ANSWER = "Invalid answer.";
     }
-
     /**
      * Запуск игры.
      * @param rules правила заданной игры
@@ -190,8 +122,11 @@ public final class Engine {
      */
     public static void processGame(final String rules,
                                    final String[][] rounds) {
-        var userName = Cli.welcome();
-        println(rules);
+        System.out.println("Welcome to the Brain Games!");
+        System.out.println("May I have your name?");
+        String userName = SCANNER.nextLine();
+        System.out.printf("Hello, %s!", userName);
+        System.out.println(rules);
         for (int i = 0; i < ROUNDS_COUNT; i++) {
             String question = rounds[i][0];
             String correctAnswer = rounds[i][1];
@@ -203,7 +138,7 @@ public final class Engine {
                 unCorrect(userAnswer, correctAnswer, userName);
                 return;
             }
-            println(TextConstants.CORRECT);
+            System.out.println(TextConstants.CORRECT);
         }
         System.out.printf("Congratulations, %s!", userName);
     }
