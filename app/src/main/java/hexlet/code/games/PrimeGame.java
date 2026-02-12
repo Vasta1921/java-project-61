@@ -3,6 +3,7 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 import hexlet.code.Utils;
 
+import static hexlet.code.Engine.GameConstants.DIVISION;
 import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
 
 
@@ -51,7 +52,7 @@ public final class PrimeGame {
     @SuppressWarnings("checkstyle:MagicNumber")
     private static boolean checkDivision(final int number) {
         int sqrt = (int) Math.sqrt(number);
-        for (int i = 3; i <= sqrt; i++) {
+        for (int i = DIVISION; i <= sqrt; i++) {
             if (number % i == 0) {
                 return false;
             }

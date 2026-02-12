@@ -52,6 +52,10 @@ public final class Engine {
     }
     public static class GameConstants {
         /**
+         * Константа деления.
+         */
+        public static final int DIVISION = 3;
+        /**
          * Колличество раундов.
          */
         public static final int ROUNDS_COUNT = 3;
