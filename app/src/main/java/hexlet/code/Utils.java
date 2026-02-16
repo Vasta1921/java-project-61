@@ -1,12 +1,18 @@
 package hexlet.code;
 
 import java.util.concurrent.ThreadLocalRandom;
-import static hexlet.code.Engine.GameConstants.NUMBER_FROM;
-import static hexlet.code.Engine.GameConstants.NUMBER_TO;
 
 public final class Utils {
     private Utils() {
     }
+    /**
+     * Диапозон рандомного числа ОТ.
+     */
+    public static final int NUMBER_FROM = -100;
+    /**
+     * Диапозон рандомного числа ДО.
+     */
+    public static final int NUMBER_TO = 100;
     /**
      * Рандомное число от -100 до 99.
      * @return int рандомное число.

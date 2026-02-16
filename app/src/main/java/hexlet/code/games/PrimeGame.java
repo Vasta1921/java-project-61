@@ -3,15 +3,12 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 import hexlet.code.Utils;
 
-import static hexlet.code.Engine.GameConstants.DIVISION;
 import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
-
 
 public final class PrimeGame {
 
     private PrimeGame() {
     }
-
     /**
      * Правило игры простое число.
      */
@@ -49,10 +46,10 @@ public final class PrimeGame {
         return number <= 2 || (number % 2 == 1 && checkDivision(number));
     }
 
-    @SuppressWarnings("checkstyle:MagicNumber")
     private static boolean checkDivision(final int number) {
+        final int division = 3;
         int sqrt = (int) Math.sqrt(number);
-        for (int i = DIVISION; i <= sqrt; i++) {
+        for (int i = division; i <= sqrt; i++) {
             if (number % i == 0) {
                 return false;
             }

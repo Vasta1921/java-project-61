@@ -5,13 +5,9 @@ import hexlet.code.Utils;
 
 import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
 
-
-
 public final class GcdGame {
-
     private GcdGame() {
     }
-
     /**
      * Правило игры миниальный делитель.
      */

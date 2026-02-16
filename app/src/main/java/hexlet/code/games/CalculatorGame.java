@@ -2,6 +2,7 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 import hexlet.code.Utils;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
 
@@ -17,6 +18,14 @@ public final class CalculatorGame {
      * Массив операторов.
      */
     private static final char[] OPERATORS = {'+', '-', '*'};
+    /**
+     * Рандомный оператор.
+     * @return возврат рандомного опертора.
+     */
+    private static char randomOperator() {
+        return CalculatorGame.OPERATORS[ThreadLocalRandom.current().
+                nextInt(0, 2)];
+    }
     /**
      * Получение правила игры.
      * @return правила.
@@ -35,7 +44,7 @@ public final class CalculatorGame {
 
             int a = Utils.randomNumberForCalc();
             int b = Utils.randomNumberForCalc();
-            char op = Engine.randomOperator(OPERATORS);
+            char op = randomOperator();
 
             int correctAnswer = calculate(a, b, op);
 

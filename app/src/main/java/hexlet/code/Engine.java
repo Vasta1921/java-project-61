@@ -1,7 +1,6 @@
 package hexlet.code;
 
 import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
 
 import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
 
@@ -33,28 +32,13 @@ public final class Engine {
         );
     }
     /**
-     * Рандомный оператор.
-     *
-     * @param operator массив операторов.
-     * @return возврат рандомного опертора.
-     */
-    public static char randomOperator(final char[] operator) {
-        return operator[ThreadLocalRandom.current().nextInt(0, 2)];
-    }
-
-    /**
      * Ответ пользователя.
-     *
      * @return ответ
      */
     public static String userAnswer() {
         return SCANNER.nextLine();
     }
     public static class GameConstants {
-        /**
-         * Константа деления.
-         */
-        public static final int DIVISION = 3;
         /**
          * Колличество раундов.
          */
@@ -87,37 +71,6 @@ public final class Engine {
          * Шестая кнопка.
          */
         public static final int SIXTH_BUTTON = 6;
-        /**
-         * Диапозон рандомного числа ОТ.
-         */
-        public static final int NUMBER_FROM = -100;
-        /**
-         * Диапозон рандомного числа ДО.
-         */
-        public static final int NUMBER_TO = 100;
-        /**
-         * Диапозон шага ДО.
-         */
-        public static final int STEP_TO = 11;
-        /**
-         * Диапозон длинны массива ОТ.
-         */
-        public static final int ARRAY_LENGTH_FROM = 5;
-        /**
-         * Диапозон длинны массива ДО.
-         */
-        public static final int ARRAY_LENGTH_TO = 11;
-    }
-
-    public static class TextConstants {
-        /**
-         * Вывод для правильного ответа.
-         */
-        public static final String CORRECT = "Correct!";
-        /**
-         * Вопрос.
-         */
-        public static final String QUESTION = "Question: ";
     }
     /**
      * Запуск игры.
@@ -135,14 +88,14 @@ public final class Engine {
             String question = rounds[i][0];
             String correctAnswer = rounds[i][1];
 
-            System.out.println(TextConstants.QUESTION + question);
+            System.out.println("Question: " + question);
             String userAnswer = userAnswer();
 
             if (!userAnswer.equals(correctAnswer)) {
                 unCorrect(userAnswer, correctAnswer, userName);
                 return;
             }
-            System.out.println(TextConstants.CORRECT);
+            System.out.println("Correct!");
         }
         System.out.printf("Congratulations, %s!", userName);
     }
