@@ -1,17 +1,19 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
-
+import hexlet.code.Utils;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static hexlet.code.Engine.ROUNDS_COUNT;
 
-import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
-import static hexlet.code.Utils.NUMBER_TO;
 
 public final class ProgressionGame {
     private ProgressionGame() {
     }
-
+    /**
+     * Диапозон рандомного числа ДО.
+     */
+    private static final int NUMBER_TO = 100;
     /**
      * Правило игры прогрессии.
      */
@@ -20,19 +22,18 @@ public final class ProgressionGame {
     /**
      * Диапозон шага ДО.
      */
-    public static final int STEP_TO = 11;
+    private static final int STEP_TO = 11;
     /**
      * Диапозон длинны массива ОТ.
      */
-    public static final int ARRAY_LENGTH_FROM = 5;
+    private static final int ARRAY_LENGTH_FROM = 5;
     /**
      * Диапозон длинны массива ДО.
      */
-    public static final int ARRAY_LENGTH_TO = 11;
+    private static final int ARRAY_LENGTH_TO = 11;
 
     /**
      * Возврат правил.
-     *
      * @return правила.
      */
     private static String getRules() {
@@ -57,7 +58,6 @@ public final class ProgressionGame {
     }
     /**
      * Генерация раундов.
-     *
      * @return массив раунда и правильного ответа
      */
     private static String[] generateRound() {
@@ -67,7 +67,7 @@ public final class ProgressionGame {
                 nextInt(ARRAY_LENGTH_FROM, ARRAY_LENGTH_TO);
         String[] progression =
                 generateProgression(firstNumber, step, lengthArray);
-        int hiddenIndex = ThreadLocalRandom.current().nextInt(1, lengthArray);
+        int hiddenIndex = Utils.randomNumber(1, lengthArray);
         int correctAnswer = firstNumber + hiddenIndex * step;
         progression[hiddenIndex] = "..";
         return new String[]{

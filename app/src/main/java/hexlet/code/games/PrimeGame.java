@@ -3,12 +3,20 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 import hexlet.code.Utils;
 
-import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
+import static hexlet.code.Engine.ROUNDS_COUNT;
 
 public final class PrimeGame {
 
     private PrimeGame() {
     }
+    /**
+     * Диапозон рандомного числа ОТ.
+     */
+    private static final int NUMBER_FROM = 1;
+    /**
+     * Диапозон рандомного числа ДО.
+     */
+    private static final int NUMBER_TO = 100;
     /**
      * Правило игры простое число.
      */
@@ -33,7 +41,7 @@ public final class PrimeGame {
         String[][] rounds = new String[ROUNDS_COUNT][2];
 
         for (int i = 0; i < ROUNDS_COUNT; i++) {
-            int number = Utils.randomNumber();
+            int number = Utils.randomNumber(NUMBER_FROM, NUMBER_TO);
 
             rounds[i][0] = String.valueOf(number);
             rounds[i][1] = isPrime(number) ? "yes" : "no";
@@ -41,7 +49,6 @@ public final class PrimeGame {
 
         return rounds;
     }
-
     private static boolean isPrime(final int number) {
         return number <= 2 || (number % 2 == 1 && checkDivision(number));
     }
@@ -56,7 +63,6 @@ public final class PrimeGame {
         }
         return true;
     }
-
     /**
      * Запуск игры.
      */

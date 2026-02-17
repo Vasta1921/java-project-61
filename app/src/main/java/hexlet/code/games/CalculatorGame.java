@@ -2,13 +2,20 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 import hexlet.code.Utils;
-import java.util.concurrent.ThreadLocalRandom;
 
-import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
+import static hexlet.code.Engine.ROUNDS_COUNT;
 
 public final class CalculatorGame {
     private CalculatorGame() {
     }
+    /**
+     * Диапозон рандомного числа ОТ.
+     */
+    private static final int NUMBER_FROM = -100;
+    /**
+     * Диапозон рандомного числа ДО.
+     */
+    private static final int NUMBER_TO = 100;
     /**
      * Правила игры.
      */
@@ -23,8 +30,7 @@ public final class CalculatorGame {
      * @return возврат рандомного опертора.
      */
     private static char randomOperator() {
-        return CalculatorGame.OPERATORS[ThreadLocalRandom.current().
-                nextInt(0, 2)];
+        return CalculatorGame.OPERATORS[Utils.randomNumber(0, 2)];
     }
     /**
      * Получение правила игры.
@@ -42,8 +48,8 @@ public final class CalculatorGame {
 
         for (int i = 0; i < ROUNDS_COUNT; i++) {
 
-            int a = Utils.randomNumberForCalc();
-            int b = Utils.randomNumberForCalc();
+            int a = Utils.randomNumber(NUMBER_FROM, NUMBER_TO);
+            int b = Utils.randomNumber(NUMBER_FROM, NUMBER_TO);
             char op = randomOperator();
 
             int correctAnswer = calculate(a, b, op);

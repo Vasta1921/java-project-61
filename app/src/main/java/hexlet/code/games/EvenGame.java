@@ -3,12 +3,21 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 import hexlet.code.Utils;
 
-import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
+import static hexlet.code.Engine.ROUNDS_COUNT;
 
 public final class EvenGame {
 
     private EvenGame() {
     }
+
+    /**
+     * Диапозон рандомного числа ОТ.
+     */
+    private static final int NUMBER_FROM = 1;
+    /**
+     * Диапозон рандомного числа ДО.
+     */
+    private static final int NUMBER_TO = 100;
     /**
      * Правило игры четное.
      */
@@ -17,6 +26,7 @@ public final class EvenGame {
 
     /**
      * Возврат правил.
+     *
      * @return правило.
      */
     private static String getRules() {
@@ -25,14 +35,14 @@ public final class EvenGame {
 
     /**
      * Генерация игры.
+     *
      * @return вопросы и ответы.
      */
     private static String[][] getRounds() {
         String[][] rounds = new String[ROUNDS_COUNT][2];
 
         for (int i = 0; i < ROUNDS_COUNT; i++) {
-            int number = Utils.randomNumber();
-
+            int number = Utils.randomNumber(NUMBER_FROM, NUMBER_TO);
             rounds[i][0] = String.valueOf(number);
             rounds[i][1] = isEven(number) ? "yes" : "no";
         }

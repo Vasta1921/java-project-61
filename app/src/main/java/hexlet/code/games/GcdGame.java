@@ -3,11 +3,19 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 import hexlet.code.Utils;
 
-import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
+import static hexlet.code.Engine.ROUNDS_COUNT;
 
 public final class GcdGame {
     private GcdGame() {
     }
+    /**
+     * Диапозон рандомного числа ОТ.
+     */
+    private static final int NUMBER_FROM = 1;
+    /**
+     * Диапозон рандомного числа ДО.
+     */
+    private static final int NUMBER_TO = 100;
     /**
      * Правило игры миниальный делитель.
      */
@@ -30,8 +38,8 @@ public final class GcdGame {
         String[][] rounds = new String[ROUNDS_COUNT][2];
 
         for (int i = 0; i < ROUNDS_COUNT; i++) {
-            int firstNumber = Utils.randomNumber();
-            int secondNumber = Utils.randomNumber();
+            int firstNumber = Utils.randomNumber(NUMBER_FROM, NUMBER_TO);
+            int secondNumber = Utils.randomNumber(NUMBER_FROM, NUMBER_TO);
 
             int gcd = calculateGcd(firstNumber, secondNumber);
 

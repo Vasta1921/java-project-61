@@ -2,20 +2,15 @@ package hexlet.code;
 
 import java.util.Scanner;
 
-import static hexlet.code.Engine.GameConstants.ROUNDS_COUNT;
-
 public final class Engine {
     private Engine() {
     }
-
     /**
      * Ввод команд пользователя.
      */
     private static final Scanner SCANNER = new Scanner(System.in);
-
     /**
      * Валидация неправильного ответа.
-     *
      * @param answer        ответ пользователя.
      * @param correctAnswer правильный ответ.
      * @param userName      имя пользователя
@@ -32,49 +27,12 @@ public final class Engine {
         );
     }
     /**
-     * Ответ пользователя.
-     * @return ответ
+     * Колличество раундов.
      */
-    public static String userAnswer() {
-        return SCANNER.nextLine();
-    }
-    public static class GameConstants {
-        /**
-         * Колличество раундов.
-         */
-        public static final int ROUNDS_COUNT = 3;
-        /**
-         * Нулевая кнопка.
-         */
-        public static final int ZERO_BUTTON = 0;
-        /**
-         * Первая кнопка.
-         */
-        public static final int FIRST_BUTTON = 1;
-        /**
-         * Вторая кнопка.
-         */
-        public static final int SECOND_BUTTON = 2;
-        /**
-         * Третья кнопка.
-         */
-        public static final int THIRD_BUTTON = 3;
-        /**
-         * Четвёртая кнокпка.
-         */
-        public static final int FOURTH_BUTTON = 4;
-        /**
-         * Пятая кнопка.
-         */
-        public static final int FIFTH_BUTTON = 5;
-        /**
-         * Шестая кнопка.
-         */
-        public static final int SIXTH_BUTTON = 6;
-    }
+    public static final int ROUNDS_COUNT = 3;
     /**
      * Запуск игры.
-     * @param rules правила заданной игры
+     * @param rules  правила заданной игры
      * @param rounds распечатка раундов заданной игры
      */
     public static void processGame(final String rules,
@@ -89,7 +47,7 @@ public final class Engine {
             String correctAnswer = rounds[i][1];
 
             System.out.println("Question: " + question);
-            String userAnswer = userAnswer();
+            String userAnswer = SCANNER.nextLine();
 
             if (!userAnswer.equals(correctAnswer)) {
                 unCorrect(userAnswer, correctAnswer, userName);

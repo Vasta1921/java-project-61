@@ -5,21 +5,41 @@ import hexlet.code.games.EvenGame;
 import hexlet.code.games.GcdGame;
 import hexlet.code.games.PrimeGame;
 import hexlet.code.games.ProgressionGame;
-
 import java.util.Scanner;
 
-import static hexlet.code.Engine.GameConstants.FIFTH_BUTTON;
-import static hexlet.code.Engine.GameConstants.FIRST_BUTTON;
-import static hexlet.code.Engine.GameConstants.FOURTH_BUTTON;
-import static hexlet.code.Engine.GameConstants.SECOND_BUTTON;
-import static hexlet.code.Engine.GameConstants.SIXTH_BUTTON;
-import static hexlet.code.Engine.GameConstants.THIRD_BUTTON;
-import static hexlet.code.Engine.GameConstants.ZERO_BUTTON;
-
 public final class App {
+    private App() {
+    }
+    /**
+     * Нулевая кнопка.
+     */
+    public static final int ZERO_BUTTON = 0;
+    /**
+     * Первая кнопка.
+     */
+    public static final int FIRST_BUTTON = 1;
+    /**
+     * Вторая кнопка.
+     */
+    public static final int SECOND_BUTTON = 2;
+    /**
+     * Третья кнопка.
+     */
+    public static final int THIRD_BUTTON = 3;
+    /**
+     * Четвёртая кнокпка.
+     */
+    public static final int FOURTH_BUTTON = 4;
+    /**
+     * Пятая кнопка.
+     */
+    public static final int FIFTH_BUTTON = 5;
+    /**
+     * Шестая кнопка.
+     */
+    public static final int SIXTH_BUTTON = 6;
     /**
      * Метод запускающий скрипт.
-     *
      * @param args метод.
      */
     public static void main(final String[] args) {
@@ -60,8 +80,5 @@ public final class App {
             default:
                 System.out.println("Unknown option " + choice);
         }
-    }
-
-    private App() {
     }
 }
